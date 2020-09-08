@@ -233,7 +233,7 @@ static int
 screenhack_ehandler (Display *dpy, XErrorEvent *error)
 {
   fprintf (stderr, "\nX error in %s:\n", progname);
-  if (XmuPrintDefaultErrorMessage (dpy, error, stderr))
+  if (XmuPrintDefaultErrorMessage (dpy, error, stderr) && error->error_code != BadWindow)
     exit (-1);
   else
     fprintf (stderr, " (nonfatal.)\n");
